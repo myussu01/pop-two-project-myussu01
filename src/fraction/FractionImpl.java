@@ -15,16 +15,19 @@ public class FractionImpl implements Fraction {
     public FractionImpl(int numerator, int denominator) {
         // TODO
         try{
-        boolean x = false;
-        if(numerator < 0){ x = true;
-            numerator*=-1;
-        }else if (denominator < 0){
-            x = true; denominator*=-1;}
-        while(numerator != denominator){
-            if(numerator>denominator){numerator-=denominator;}else{
-                denominator -= numerator;}
-        } if(x){
-            numerator*=-1;}}
+            boolean x = false;
+            boolean j = false;
+            int a = numerator;
+            int b = denominator;
+            if(a < 0){ x = true;
+                a*=-1;
+            }if (b < 0){
+                j = true; b*=-1;}
+            while(a != b){
+                if(a>b){a = a-b;}else{
+                    b = b-a;}
+            }numerator/=a; denominator/=a; if(j){
+                numerator*=-1; denominator*=-1;}}
         catch(ArithmeticException e){
             System.out.print("Can't divide by 0");}
 
