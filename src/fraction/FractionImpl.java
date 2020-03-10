@@ -14,18 +14,20 @@ public class FractionImpl implements Fraction {
      */
     public FractionImpl(int numerator, int denominator) {
         // TODO
-        int j = 0;
-        for(int x = 0; x>numerator;){
-            if(numerator % x == 0 && denominator % x == 0){
-                j = x;
-            } else{
-                x++;
-            }
-        } if(denominator < 0){
-            denominator*= -1;
-            numerator *= -1;
-        }
-        numerator/= j; denominator/= j;
+        try{
+        boolean x = false;
+        if(numerator < 0){ x = true;
+            numerator*=-1;
+        }else if (denominator < 0){
+            x = true; denominator*=-1;}
+        while(numerator != denominator){
+            if(numerator>denominator){numerator-=denominator;}else{
+                denominator -= numerator;}
+        } if(x){
+            numerator*=-1;}}
+        catch(ArithmeticException e){
+            System.out.print("Can't divide by 0");}
+
     }
 
     /**
