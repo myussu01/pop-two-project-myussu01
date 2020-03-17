@@ -8,30 +8,30 @@ public class FractionImpl implements Fraction {
      * <pre>-2</pre> and denominator <pre>3</pre>.
      *
      * The constructor should throw an <pre>ArithmeticException</pre> if the denominator is zero.
-     *
-     * @param numerator
-     * @param denominator
      */
+     private int numerator;
+     private int denominator;
+
     public FractionImpl(int numerator, int denominator) {
-        // TODO
-        try{
-            boolean x = false;
-            boolean j = false;
+        /** Used the Euclidean Algorithm to find the GCD and then divided
+         * both the numerator and denominator with the formula */
+
+            boolean j = false; int s = 0; boolean x = false;
             int a = numerator;
             int b = denominator;
+            try{s = a/b;}catch(ArithmeticException e){System.out.print("Cannot divide by 0"); throw e;}
             if(a < 0){ x = true;
-                a*=-1;
+                a*=-1; numerator*=-1;
             }if (b < 0){
-                j = true; b*=-1;}
+                j = true; b*=-1; denominator*=-1;}
             while(a != b){
                 if(a>b){a = a-b;}else{
                     b = b-a;}
             }numerator/=a; denominator/=a; if(j){
-                numerator*=-1; denominator*=-1;}}
-        catch(ArithmeticException e){
-            System.out.print("Can't divide by 0");}
+                numerator*=-1; denominator*=-1;} if(x){ numerator*=-1;}
+            this.numerator = numerator; this.denominator = denominator;}
 
-    }
+
 
     /**
      * The parameter is the numerator and <pre>1</pre> is the implicit denominator.
@@ -40,6 +40,8 @@ public class FractionImpl implements Fraction {
      */
     public FractionImpl(int wholeNumber) {
         // TODO
+        this.numerator = wholeNumber;
+        this.denominator = 1;
     }
 
     /**
@@ -55,7 +57,22 @@ public class FractionImpl implements Fraction {
      */
     public FractionImpl(String fraction) {
         // TODO
-    }
+        int j, k, a, b, s = 0;
+        boolean x = false; boolean g = false;
+            j = Integer.parseInt(fraction.substring(0, fraction.indexOf("/")).trim());
+            k = Integer.parseInt(fraction.substring(fraction.indexOf("/") + 1).trim());
+            try{s = j/k;}catch (ArithmeticException e){System.out.println("Cannot divide by 0"); throw e;}
+            a = j; b = k;
+            if(a < 0){ g=true;
+                a*=-1; j*=-1;
+            }if (b < 0){
+                x = true; b*=-1; k*=-1;}
+            while(a != b){
+                if(a>b){a = a-b;}else{
+                    b = b-a;}
+            } k/=a; j/=a; if(x){j*=-1;} if(g){j*=-1;}
+        }
+
 
     /**
      * @inheritDoc
