@@ -70,7 +70,8 @@ public class FractionImpl implements Fraction {
             while(a != b){
                 if(a>b){a = a-b;}else{
                     b = b-a;}
-            } k/=a; j/=a; if(x){j*=-1;} if(g){j*=-1;}
+            } k/=a; j/=a; if(x){j*=-1; k*=-1;} if(g){j*=-1;}
+            this.numerator = j; this.denominator = k;
         }
 
 
