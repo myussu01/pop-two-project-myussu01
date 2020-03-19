@@ -83,6 +83,10 @@ public class FractionImpl implements Fraction {
         return null;
     }
 
+    public int getDenom(){
+        return denominator;
+    }
+
     /**
      * @inheritDoc
      */

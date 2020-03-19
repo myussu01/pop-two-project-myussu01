@@ -1,11 +1,15 @@
-package com.company;
+package fraction;
 
 public class Main {
 
     public static void main(String []args){
-        System.out.print(M("145    /-13"));
 
+        FractionImpl M = new FractionImpl(135, 445);
+        System.out.println(M.getDenom());
     }
+
+
+
     public static int M(String numerator){
 
             int j, s = 0;
