@@ -80,11 +80,30 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
-        return null;
+        FractionImpl o = (FractionImpl)f;
+        o.numerator = ((this.numerator * o.denominator) + (this.denominator * o.numerator));
+        o.denominator = this.denominator * o.denominator;
+        int a = o.numerator;
+        int b = o.denominator;
+        while(a != b){
+            if(a>b){a = a-b;}else{
+                b = b-a;}
+        } o.numerator /= a; o.denominator/=a;
+        return o;
     }
 
+    /** My own method
+     * to test the class.
+     * @return
+     */
+    public void gcd( int nom, int denom){
+
+    };
     public int getDenom(){
         return denominator;
+    }
+    public int getNom(){
+        return numerator;
     }
 
     /**
@@ -92,7 +111,21 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction subtract(Fraction f) {
-        return null;
+        FractionImpl o = (FractionImpl)f;
+        o.numerator = (this.numerator * o.denominator) - (this.denominator * o.numerator);
+        o.denominator = this.denominator * o.denominator;
+        boolean x = false;
+        int a = o.numerator;
+        int b = o.denominator;if(o.numerator > 0){
+        while(a != b){
+            if(a>b){a = a-b;}else{
+                b = b-a;}
+        }}else{while(a != b){
+            if(a>b){a = a+b;}else{
+                b = b+a;} //o.numerator*=-1; o.denominator*=-1;}
+        }}
+        o.numerator /= a; o.denominator/=a;
+        return o;
     }
 
     /**

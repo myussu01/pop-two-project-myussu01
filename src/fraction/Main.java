@@ -4,8 +4,10 @@ public class Main {
 
     public static void main(String []args){
 
-        FractionImpl M = new FractionImpl(135, 445);
-        System.out.println(M.getDenom());
+        Fraction M = new FractionImpl(1, 2);
+        Fraction K = new FractionImpl(1,8);
+        Fraction S = K.add(M);
+
     }
 
 
