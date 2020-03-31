@@ -59,6 +59,7 @@ public class FractionImpl implements Fraction {
         // TODO
         int j, k, a, b, s = 0;
         boolean x = false; boolean g = false;
+        if(fraction.contains("/")){
             j = Integer.parseInt(fraction.substring(0, fraction.indexOf("/")).trim());
             k = Integer.parseInt(fraction.substring(fraction.indexOf("/") + 1).trim());
             try{s = j/k;}catch (ArithmeticException e){System.out.println("Cannot divide by 0"); throw e;}
@@ -71,7 +72,10 @@ public class FractionImpl implements Fraction {
                 if(a>b){a = a-b;}else{
                     b = b-a;}
             } k/=a; j/=a; if(x){j*=-1; k*=-1;} if(g){j*=-1;}
-            this.numerator = j; this.denominator = k;
+            this.numerator = j; this.denominator = k;} else{
+            this.numerator = Integer.parseInt(fraction);
+            this.denominator = Integer.parseInt("1");}
+        if(this.denominator < 0){this.numerator *= -1;}
         }
 
 
@@ -81,30 +85,30 @@ public class FractionImpl implements Fraction {
     @Override
     public Fraction add(Fraction f) {
         FractionImpl o = (FractionImpl)f;
+        boolean c = true;
+        if(o.denominator < 0){o.denominator *=-1; o.numerator *=-1;} if(this.denominator <0)
+        {this.denominator *=-1; this.numerator *=-1;}
         o.numerator = ((this.numerator * o.denominator) + (this.denominator * o.numerator));
         o.denominator = this.denominator * o.denominator;
+        if(o.numerator <0){o.numerator *=-1; c=false;}
         int a = o.numerator;
         int b = o.denominator;
         while(a != b){
+            if(a==0){o.numerator = 0; o.denominator = 1; return o;}
             if(a>b){a = a-b;}else{
-                b = b-a;}
-        } o.numerator /= a; o.denominator/=a;
-        return o;
-    }
+                b = b-a;}}o.numerator /= a; o.denominator/=a;
+        if(!c){o.numerator *=-1;}
+    return o;}
 
     /** My own method
      * to test the class.
      * @return
      */
-    public void gcd( int nom, int denom){
-
-    };
-    public int getDenom(){
-        return denominator;
-    }
-    public int getNom(){
-        return numerator;
-    }
+//    public void gcd( int a, int b,){
+//        while(a != b){
+//            if(a>b){a = a-b;}else{
+//                b = b-a; a=b;} a/=a; b/=
+//    }}
 
     /**
      * @inheritDoc
@@ -205,6 +209,11 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
-        return null;
+        String n = Integer.toString(this.numerator);
+        String d = Integer.toString(this.denominator);
+        if(d.equals("1") | n.equals(d)){
+            return n;
+        }else{
+        return n + "/" + d;}
     }
 }

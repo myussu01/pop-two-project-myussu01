@@ -4,10 +4,10 @@ public class Main {
 
     public static void main(String []args){
 
-        Fraction M = new FractionImpl(1, 2);
-        Fraction K = new FractionImpl(1,8);
+        Fraction M = new FractionImpl(1,4);
+        Fraction K = new FractionImpl("3/4");
         Fraction S = K.add(M);
-
+        System.out.print(S.toString());
     }
 
 
