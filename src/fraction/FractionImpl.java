@@ -15,7 +15,6 @@ public class FractionImpl implements Fraction {
     public FractionImpl(int numerator, int denominator) {
         /** Used the Euclidean Algorithm to find the GCD and then divided
          * both the numerator and denominator with the formula */
-
             boolean j = false; int s = 0; boolean x = false;
             int a = numerator;
             int b = denominator;
@@ -28,7 +27,7 @@ public class FractionImpl implements Fraction {
                 if(a>b){a = a-b;}else{
                     b = b-a;}
             }numerator/=a; denominator/=a; if(j){
-                numerator*=-1; denominator*=-1;} if(x){ numerator*=-1;}
+                numerator*=-1;} if(x){ numerator*=-1;}
             this.numerator = numerator; this.denominator = denominator;}
 
 
@@ -86,29 +85,28 @@ public class FractionImpl implements Fraction {
     public Fraction add(Fraction f) {
         FractionImpl o = (FractionImpl)f;
         boolean c = true;
-        if(o.denominator < 0){o.denominator *=-1; o.numerator *=-1;} if(this.denominator <0)
-        {this.denominator *=-1; this.numerator *=-1;}
+        if(o.denominator < 0){o.denominator *=-1; o.numerator *=-1;}
+        if(this.denominator < 0) {this.denominator *=-1; this.numerator *=-1;}
         o.numerator = ((this.numerator * o.denominator) + (this.denominator * o.numerator));
         o.denominator = this.denominator * o.denominator;
         if(o.numerator <0){o.numerator *=-1; c=false;}
-        int a = o.numerator;
-        int b = o.denominator;
-        while(a != b){
-            if(a==0){o.numerator = 0; o.denominator = 1; return o;}
-            if(a>b){a = a-b;}else{
-                b = b-a;}}o.numerator /= a; o.denominator/=a;
+        int a = gcd(o.numerator, o.denominator);
+            o.numerator /= a; o.denominator/= a;
         if(!c){o.numerator *=-1;}
     return o;}
 
-    /** My own method
-     * to test the class.
+    /**Method
+     * Euclid's algorithm
      * @return
      */
-//    public void gcd( int a, int b,){
-//        while(a != b){
-//            if(a>b){a = a-b;}else{
-//                b = b-a; a=b;} a/=a; b/=
-//    }}
+    private static int gcd( int a, int b){
+        while(a != b){
+   //      if(a==0){a= 0; b = 1; break;}
+         if(
+                 a>b){a = a-b; return a;}
+         else{
+             b = b-a;return b;}}return a;
+    }
 
     /**
      * @inheritDoc
@@ -211,8 +209,10 @@ public class FractionImpl implements Fraction {
     public String toString() {
         String n = Integer.toString(this.numerator);
         String d = Integer.toString(this.denominator);
-        if(d.equals("1") | n.equals(d)){
+        if(d.equals("1")){
             return n;
+        }else if(n.equals(d)){
+            return "1";
         }else{
         return n + "/" + d;}
     }
