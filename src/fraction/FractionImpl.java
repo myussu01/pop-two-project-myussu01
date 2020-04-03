@@ -16,6 +16,10 @@ public class FractionImpl implements Fraction {
         /** Used the Euclidean Algorithm to find the GCD and then divided
          * both the numerator and denominator with the formula */
             boolean j = false; boolean x = false;
+            try{
+                if(denominator == 0)
+                    throw  new ArithmeticException();
+            }catch (ArithmeticException e){System.out.println("Denominator cannot be zero");}
             if(numerator < 0){ x = true;
                 numerator*=-1;
             }if (denominator < 0){
@@ -52,10 +56,12 @@ public class FractionImpl implements Fraction {
         int j, k, a, b, s = 0;
         boolean x = false; boolean g = false;
         if(fraction.contains("/")){
-            try{  j = Integer.parseInt(fraction.substring(0, fraction.indexOf("/")).trim());
-                try{k = Integer.parseInt(fraction.substring(fraction.indexOf("/") + 1).trim());;}
-            catch(ArithmeticException e){System.out.println("Denominator cannot be zero"); throw e;}
-            }   catch(NumberFormatException e){System.out.println("Invalid number; please try again"); throw e;}
+            j = Integer.parseInt(fraction.substring(0, fraction.indexOf("/")).trim());
+            k = Integer.parseInt(fraction.substring(fraction.indexOf("/") + 1).trim());;
+            try{
+                if(k == 0)
+                    throw new ArithmeticException();
+            }catch (ArithmeticException e){System.out.println("Denominator cannot be zero");}
             a = j; b = k;
             if(a < 0){ g=true;
                 a*=-1; j*=-1;
@@ -81,8 +87,9 @@ public class FractionImpl implements Fraction {
         o.numerator = ((this.numerator * o.denominator) + (this.denominator * o.numerator));
         o.denominator = this.denominator * o.denominator;
         if(o.numerator <0){o.numerator *=-1; c=false;}
+        if(o.numerator == 0){o.denominator = 1;}else{
         int a = gcd(o.numerator, o.denominator);
-            o.numerator /= a; o.denominator/= a;
+            o.numerator /= a; o.denominator/= a;}
         if(!c){o.numerator *=-1;}
     return o;}
 
@@ -92,6 +99,7 @@ public class FractionImpl implements Fraction {
      */
     private static int gcd( int a, int b){
         while(a != b){
+            if(a == 0 | b == 0){}
          if(a>b){a = a-b;}
          else{b = b-a;}}
         return a;
@@ -188,12 +196,15 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     *
+     * Returns a string of the form numerator / denominator. A Zero is represented as a 0/1
+     * If the denominator equals to a one only the numerator is returned.
      */
     @Override
     public String toString() {
         String n = Integer.toString(this.numerator);
         String d = Integer.toString(this.denominator);
-        if(d.equals("1")){
+        if(d.equals("1") && !n.equals("0")){
             return n;
         }else if(n.equals(d)){
             return "1";
