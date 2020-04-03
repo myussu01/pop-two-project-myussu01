@@ -72,7 +72,7 @@ public class FractionImpl implements Fraction {
             this.numerator = j; this.denominator = k;} else{
             this.numerator = Integer.parseInt(fraction);
             this.denominator = Integer.parseInt("1");}
-        if(this.denominator < 0){this.numerator *= -1;}
+         if(this.denominator < 0){this.numerator *= -1;}
         }
 
     /**
@@ -117,8 +117,9 @@ public class FractionImpl implements Fraction {
         o.numerator = ((this.numerator * o.denominator) - (this.denominator * o.numerator));
         o.denominator = this.denominator * o.denominator;
         if(o.numerator <0){o.numerator *=-1; c=false;}
-        int a = gcd(o.numerator, o.denominator);
-        o.numerator /= a; o.denominator/= a;
+        if(o.numerator == 0){o.denominator = 1;}else{
+            int a = gcd(o.numerator, o.denominator);
+        o.numerator /= a; o.denominator/= a;}
         if(!c){o.numerator *=-1;}
         return o;}
 
