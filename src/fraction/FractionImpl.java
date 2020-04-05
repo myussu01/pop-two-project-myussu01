@@ -85,7 +85,7 @@ public class FractionImpl implements Fraction {
         if(o.denominator < 0){o.denominator *=-1; o.numerator *=-1;}
         if(this.denominator < 0) {this.denominator *=-1; this.numerator *=-1;}
         o.numerator = ((this.numerator * o.denominator) + (this.denominator * o.numerator));
-        o.denominator = this.denominator * o.denominator;
+        o.denominator *= this.denominator;
         if(o.numerator <0){o.numerator *=-1; c=false;}
         if(o.numerator == 0){o.denominator = 1;}else{
         int a = gcd(o.numerator, o.denominator);
@@ -115,7 +115,7 @@ public class FractionImpl implements Fraction {
         if(o.denominator < 0){o.denominator *=-1; o.numerator *=-1;}
         if(this.denominator < 0) {this.denominator *=-1; this.numerator *=-1;}
         o.numerator = ((this.numerator * o.denominator) - (this.denominator * o.numerator));
-        o.denominator = this.denominator * o.denominator;
+        o.denominator *= this.denominator;
         if(o.numerator <0){o.numerator *=-1; c=false;}
         if(o.numerator == 0){o.denominator = 1;}else{
             int a = gcd(o.numerator, o.denominator);
@@ -128,23 +128,45 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction multiply(Fraction f) {
-        return null;
-    }
+        FractionImpl o = (FractionImpl)f;
+        boolean c = true;
+        if(o.denominator < 0){o.denominator *=-1; o.numerator *=-1;}
+        if(this.denominator < 0) {this.denominator *=-1; this.numerator *=-1;}
+        o.numerator *= this.numerator;
+        o.denominator *= this.denominator;
+        if(o.numerator <0){o.numerator *=-1; c=false;}
+        if(o.numerator == 0){o.denominator = 1;}else{
+            int a = gcd(o.numerator, o.denominator);
+            o.numerator /= a; o.denominator/= a;}
+        if(!c){o.numerator *=-1;}
+        return o;}
 
     /**
      * @inheritDoc
      */
     @Override
-    public Fraction divide(Fraction f) {
-        return null;
-    }
+    public Fraction divide(Fraction f)  {
+        FractionImpl o = (FractionImpl)f;
+        int x = o.numerator;
+        boolean c = true;
+        if(o.denominator < 0){o.denominator *=-1; o.numerator *=-1;}
+        if(this.denominator < 0) {this.denominator *=-1; this.numerator *=-1;}
+        o.numerator = o.denominator * this.numerator;
+        o.denominator = x * this.denominator;
+        if(o.numerator <0){o.numerator *=-1; c=false;}
+        if(o.numerator == 0){o.denominator = 1;}else {
+            int a = gcd(o.numerator, o.denominator);
+        o.numerator /= a; o.denominator/= a;}
+        if(!c){o.numerator *=-1;}
+        return o;}
 
     /**
      * @inheritDoc
      */
     @Override
     public Fraction abs() {
-        return null;
+        Fraction x = new FractionImpl(Math.abs(this.numerator), Math.abs(this.denominator) );
+        return x;
     }
 
     /**
@@ -152,7 +174,8 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction negate() {
-        return null;
+        Fraction x = new FractionImpl(this.numerator*-1, this.denominator);
+        return x;
     }
 
     /**
@@ -168,7 +191,8 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        Fraction f = (Fraction) obj;
+        return super.equals(f);
     }
 
     /**
@@ -184,7 +208,8 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction inverse() {
-        return null;
+        Fraction x = new FractionImpl(this.denominator, this.numerator);
+        return x;
     }
 
     /**
