@@ -191,8 +191,12 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-        Fraction f = (Fraction) obj;
-        return super.equals(f);
+       if(obj instanceof Fraction){
+        FractionImpl x = (FractionImpl) obj;
+        return (numerator == x.numerator) && (denominator == x.denominator);}else{
+           return false;
+       }
+        //return super.equals(obj);
     }
 
     /**
@@ -214,10 +218,20 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     * The least common multiple (lcm), which is needed to compare the two fractions is
+     * the product of the denominators divided by their gcd. lcm(a,b) = ab/gcd(a,b).
      */
     @Override
     public int compareTo(Fraction o) {
-        return 0;
+        FractionImpl f = (FractionImpl)o;
+        int a = (this.denominator * ((FractionImpl) o).denominator) / gcd(this.denominator, ((FractionImpl) o).denominator);
+        if ((a/this.denominator) * this.numerator < (a/((FractionImpl) o).denominator)* ((FractionImpl) o).numerator){
+            return -1;
+        } else if ((a/this.denominator) * this.numerator == (a/((FractionImpl) o).denominator)* ((FractionImpl) o).numerator){
+            return 0;
+        } else{
+            return 1;
+        }
     }
 
     /**
