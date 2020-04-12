@@ -5,7 +5,7 @@ public class Main {
     public static void main(String []args){
 
         Fraction M = new FractionImpl(1,4);
-        FractionImpl K = new FractionImpl(2,8);
+        FractionImpl K = new FractionImpl(2,2);
         System.out.println(K.compareTo(M));
 
 

@@ -18,7 +18,7 @@ public class FractionImpl implements Fraction {
             boolean j = false; boolean x = false;
             try{
                 if(denominator == 0)
-                    throw  new ArithmeticException();
+                    throw new ArithmeticException();
             }catch (ArithmeticException e){System.out.println("Denominator cannot be zero");}
             if(numerator < 0){ x = true;
                 numerator*=-1;
