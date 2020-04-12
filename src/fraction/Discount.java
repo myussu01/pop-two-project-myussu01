@@ -11,8 +11,21 @@ package fraction;
 
 public class Discount extends FractionImpl {
 
-    public Discount(){
-        super(0,0);
+    float price;
+
+    public Discount(float x){
+        super(1,2);
+        this.price = x;
+    }
+
+    public void amount(Item itm){
+        if(itm.amount > 5 ){
+            this.price *= item.price;
+        }
+    }
+    public String toString() {
+        String x = Float.toString(this.price);
+        return "£" + x ;
     }
 }
 

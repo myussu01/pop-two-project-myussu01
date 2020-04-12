@@ -8,8 +8,10 @@ public class Main {
         FractionImpl K = new FractionImpl(2,2);
         System.out.println(K.compareTo(M));
 
-
-
+        Discount x = new Discount(5);
+        System.out.println(x);
+        Item z = new Item("Shoes", 13);
+        x.amount(z);
 
     }
 
