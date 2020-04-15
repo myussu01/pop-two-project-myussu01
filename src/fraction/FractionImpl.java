@@ -17,8 +17,8 @@ public class FractionImpl implements Fraction {
          * both the numerator and denominator with the formula */
             boolean j = false; boolean x = false;
             try{
-                if(denominator == 0)
-                    throw new ArithmeticException();
+                if(denominator == 0){
+                    throw new ArithmeticException();}
             }catch (ArithmeticException e){System.out.println("Denominator cannot be zero");}
             if(numerator < 0){ x = true;
                 numerator*=-1;
@@ -56,12 +56,11 @@ public class FractionImpl implements Fraction {
         int j, k, a, b, s = 0;
         boolean x = false; boolean g = false;
         if(fraction.contains("/")){
-            j = Integer.parseInt(fraction.substring(0, fraction.indexOf("/")).trim());
-            k = Integer.parseInt(fraction.substring(fraction.indexOf("/") + 1).trim());;
             try{
-                if(k == 0)
-                    throw new ArithmeticException();
-            }catch (ArithmeticException e){System.out.println("Denominator cannot be zero");}
+                j = Integer.parseInt(fraction.substring(0, fraction.indexOf("/")).trim());
+                k = Integer.parseInt(fraction.substring(fraction.indexOf("/") + 1).trim());
+                s = j/k;
+            }catch (ArithmeticException e){System.out.println("Denominator cannot be zero"); throw e;}
             a = j; b = k;
             if(a < 0){ g=true;
                 a*=-1; j*=-1;
@@ -69,7 +68,7 @@ public class FractionImpl implements Fraction {
                 x = true; b*=-1; k*=-1;}
             a = gcd(k,j);
              k/=a; j/=a; if(x){j*=-1; k*=-1;} if(g){j*=-1;}
-            this.numerator = j; this.denominator = k;} else{
+            this.numerator = j; this.denominator = k;}else{
             this.numerator = Integer.parseInt(fraction);
             this.denominator = Integer.parseInt("1");}
          if(this.denominator < 0){this.numerator *= -1;}
@@ -196,7 +195,6 @@ public class FractionImpl implements Fraction {
         return (numerator == x.numerator) && (denominator == x.denominator);}else{
            return false;
        }
-        //return super.equals(obj);
     }
 
     /**
