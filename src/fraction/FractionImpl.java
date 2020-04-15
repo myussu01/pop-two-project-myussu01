@@ -61,6 +61,7 @@ public class FractionImpl implements Fraction {
                 k = Integer.parseInt(fraction.substring(fraction.indexOf("/") + 1).trim());
                 s = j/k;
             }catch (ArithmeticException e){System.out.println("Denominator cannot be zero"); throw e;}
+            catch (NumberFormatException d){System.out.println("Please use valid number"); throw d;}
             a = j; b = k;
             if(a < 0){ g=true;
                 a*=-1; j*=-1;
@@ -69,8 +70,9 @@ public class FractionImpl implements Fraction {
             a = gcd(k,j);
              k/=a; j/=a; if(x){j*=-1; k*=-1;} if(g){j*=-1;}
             this.numerator = j; this.denominator = k;}else{
+            try{
             this.numerator = Integer.parseInt(fraction);
-            this.denominator = Integer.parseInt("1");}
+            this.denominator = 1;}catch (NumberFormatException d){System.out.println("Please use valid number"); throw d;}}
          if(this.denominator < 0){this.numerator *= -1;}
         }
 

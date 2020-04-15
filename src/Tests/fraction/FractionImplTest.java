@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FractionImplTest {
-    Fraction x = new FractionImpl(1,4);
+    Fraction x = new FractionImpl(3,4);
     Fraction y = new FractionImpl(1,4);
     Fraction i = new FractionImpl(4);
 
@@ -20,6 +20,8 @@ class FractionImplTest {
 
     @Test
     void subtract() {
+
+        assertEquals("1/2", 6);
     }
 
     @Test
