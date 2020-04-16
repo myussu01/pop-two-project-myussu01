@@ -8,14 +8,13 @@ class FractionImplTest {
     Fraction x = new FractionImpl(3,4);
     Fraction y = new FractionImpl(1,4);
     Fraction i = new FractionImpl(4);
+    Fraction minus = new FractionImpl(-1, 8);
 
     @Test
     void add() {
-
         Fraction z = x.add(y);
-        assertEquals("1/2", z.toString());
-        assertEquals("4", i.toString());
-
+        assertEquals("1", z.toString());
+        assertEquals("5/8", x.add(minus).toString());
     }
 
     @Test
@@ -57,13 +56,9 @@ class FractionImplTest {
     }
 
     @Test
-    void testExceptions() {
-        Fraction zero = new FractionImpl("1/0");
-        ArithmeticException thrown = assertThrows(ArithmeticException.class,
-                () -> {
-                    Integer.parseInt("0");});
-
-
+    void testDivide() {
+        Fraction div = new FractionImpl(1,2);
+        Fraction s = new FractionImpl("0");
+        assertThrows( ArithmeticException.class, () -> div.divide(s), "Denominator cannot be zero");
     }
-
 }
