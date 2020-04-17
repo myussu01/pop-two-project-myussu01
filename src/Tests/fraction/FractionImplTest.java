@@ -65,11 +65,6 @@ class FractionImplTest {
     }
 
     @Test
-    void GCD() {
-
-    }
-
-    @Test
     void testDivide() {
         Fraction div = new FractionImpl(1,0);
         Exception exception = assertThrows(ArithmeticException.class, () -> div.divide(x));
