@@ -19,7 +19,7 @@ public class FractionImpl implements Fraction {
             try{
                 if(denominator == 0){
                     throw new ArithmeticException();}
-            }catch (ArithmeticException e){System.out.println("Denominator cannot be zero");}
+            }catch (ArithmeticException e){System.out.println("Denominator cannot be zero"); throw e;}
             if(numerator < 0){ x = true;
                 numerator*=-1;
             }if (denominator < 0){
